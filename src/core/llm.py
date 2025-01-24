@@ -1,3 +1,4 @@
+import os
 from functools import cache
 from typing import TypeAlias
 
@@ -13,6 +14,7 @@ from schema.models import (
     AllModelEnum,
     AnthropicModelName,
     AWSModelName,
+    GeneralOpenAIModelName,
     DeepseekModelName,
     FakeModelName,
     GoogleModelName,
@@ -23,6 +25,7 @@ from schema.models import (
 _MODEL_TABLE = {
     OpenAIModelName.GPT_4O_MINI: "gpt-4o-mini",
     OpenAIModelName.GPT_4O: "gpt-4o",
+    GeneralOpenAIModelName.GENERAL_OPENAI_API_MODEL: "chat-model",
     DeepseekModelName.DEEPSEEK_CHAT: "deepseek-chat",
     AnthropicModelName.HAIKU_3: "claude-3-haiku-20240307",
     AnthropicModelName.HAIKU_35: "claude-3-5-haiku-latest",
@@ -48,6 +51,13 @@ def get_model(model_name: AllModelEnum, /) -> ModelT:
 
     if model_name in OpenAIModelName:
         return ChatOpenAI(model=api_model_name, temperature=0.5, streaming=True)
+    if model_name in GeneralOpenAIModelName:
+        return ChatOpenAI(
+            model=os.getenv("GENERAL_OPENAI_API_MODEL", ""),
+            streaming=True,
+            openai_api_base=os.getenv("GENERAL_OPENAI_API_BASE", ""),
+            openai_api_key=settings.GENERAL_OPENAI_API_KEY,
+        )
     if model_name in DeepseekModelName:
         return ChatOpenAI(
             model=api_model_name,

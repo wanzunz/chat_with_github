@@ -8,6 +8,8 @@ from schema.models import (
     AllModelEnum,
     AnthropicModelName,
     AWSModelName,
+    OpenAIModelName,
+    GeneralOpenAIModelName,
     DeepseekModelName,
     FakeModelName,
     GoogleModelName,
@@ -38,6 +40,7 @@ class Settings(BaseSettings):
     AUTH_SECRET: SecretStr | None = None
 
     OPENAI_API_KEY: SecretStr | None = None
+    GENERAL_OPENAI_API_KEY: SecretStr | None = None
     DEEPSEEK_API_KEY: SecretStr | None = None
     ANTHROPIC_API_KEY: SecretStr | None = None
     GOOGLE_API_KEY: SecretStr | None = None
@@ -62,6 +65,7 @@ class Settings(BaseSettings):
         api_keys = {
             Provider.OPENAI: self.OPENAI_API_KEY,
             Provider.DEEPSEEK: self.DEEPSEEK_API_KEY,
+            Provider.GENERAL_OPENAI: self.GENERAL_OPENAI_API_KEY,
             Provider.ANTHROPIC: self.ANTHROPIC_API_KEY,
             Provider.GOOGLE: self.GOOGLE_API_KEY,
             Provider.GROQ: self.GROQ_API_KEY,
@@ -78,6 +82,10 @@ class Settings(BaseSettings):
                     if self.DEFAULT_MODEL is None:
                         self.DEFAULT_MODEL = OpenAIModelName.GPT_4O_MINI
                     self.AVAILABLE_MODELS.update(set(OpenAIModelName))
+                case Provider.GENERAL_OPENAI:
+                    if self.DEFAULT_MODEL is None:
+                        self.DEFAULT_MODEL = GeneralOpenAIModelName.GENERAL_OPENAI_API_MODEL
+                    self.AVAILABLE_MODELS.update(set(GeneralOpenAIModelName))
                 case Provider.DEEPSEEK:
                     if self.DEFAULT_MODEL is None:
                         self.DEFAULT_MODEL = DeepseekModelName.DEEPSEEK_CHAT

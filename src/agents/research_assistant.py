@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Literal
 
-from langchain_community.tools import DuckDuckGoSearchResults, OpenWeatherMapQueryRun
+from langchain_community.tools import OpenWeatherMapQueryRun
 from langchain_community.utilities import OpenWeatherMapAPIWrapper
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import AIMessage, SystemMessage
@@ -11,9 +11,12 @@ from langgraph.graph import END, MessagesState, StateGraph
 from langgraph.managed import RemainingSteps
 from langgraph.prebuilt import ToolNode
 
+from agents.github_tool import github_tool
 from agents.llama_guard import LlamaGuard, LlamaGuardOutput, SafetyAssessment
-from agents.tools import calculator
 from core import get_model, settings
+from agents.github_graphql_schema_root_type import GrahpQL_doc_root_type_tool
+from agents.github_graphql_schema_field import GrahpQL_doc_field_tool
+from agents.github_graphql_schema_type import GrahpQL_doc_type_tool
 
 
 class AgentState(MessagesState, total=False):
@@ -26,8 +29,7 @@ class AgentState(MessagesState, total=False):
     remaining_steps: RemainingSteps
 
 
-web_search = DuckDuckGoSearchResults(name="WebSearch")
-tools = [web_search, calculator]
+tools = [github_tool, GrahpQL_doc_root_type_tool, GrahpQL_doc_field_tool, GrahpQL_doc_type_tool]
 
 # Add weather tool if API key is set
 # Register for an API key at https://openweathermap.org/api/

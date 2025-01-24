@@ -1,3 +1,4 @@
+import os
 from enum import StrEnum, auto
 from typing import TypeAlias
 
@@ -5,6 +6,7 @@ from typing import TypeAlias
 class Provider(StrEnum):
     OPENAI = auto()
     DEEPSEEK = auto()
+    GENERAL_OPENAI = auto()
     ANTHROPIC = auto()
     GOOGLE = auto()
     GROQ = auto()
@@ -23,6 +25,10 @@ class DeepseekModelName(StrEnum):
     """https://api-docs.deepseek.com/quick_start/pricing"""
 
     DEEPSEEK_CHAT = "deepseek-chat"
+
+
+class GeneralOpenAIModelName(StrEnum):
+    GENERAL_OPENAI_API_MODEL = os.getenv("GENERAL_OPENAI_API_MODEL", "chat-model")
 
 
 class AnthropicModelName(StrEnum):
@@ -61,11 +67,12 @@ class FakeModelName(StrEnum):
 
 
 AllModelEnum: TypeAlias = (
-    OpenAIModelName
-    | DeepseekModelName
-    | AnthropicModelName
-    | GoogleModelName
-    | GroqModelName
-    | AWSModelName
-    | FakeModelName
+        OpenAIModelName
+        | GeneralOpenAIModelName
+        | DeepseekModelName
+        | AnthropicModelName
+        | GoogleModelName
+        | GroqModelName
+        | AWSModelName
+        | FakeModelName
 )
