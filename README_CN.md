@@ -1,5 +1,12 @@
 # 🧰 Github AI Assistant
 
+<h4 align="center">
+    <p>
+        <a href="https://github.com/wanzunz/chat_with_github/blob/main/README.md">English</a> |
+        <b>中文（简体）</b> 
+    <p>
+</h4>
+
 
 一个ai助手同时支持github中一系列的能力，比如查询/修改仓库、组织、Issue、PR等。理论上支持 [GitHub GraphQL API documentation](https://docs.github.com/en/graphql) 中的大部分能力。
 
@@ -14,18 +21,7 @@
 
 ## 概述
 
-<a href="https://agent-service-toolkit.streamlit.app/"><img src="media/app_screenshot.png" width="600"></a>
-
-
 ### 可以做哪些事情？
-#### 例子1: 自动生成仓库描述并且修改它
-![](media/zh/modify_description.png)
-#### 例子2: 结合文档回复issue
-![](media/zh/comment_issue.png)
-#### 例子3: 查询仓库
-![](media/zh/hot_repo.png)
-
-### 更多
 
 - 多种查询操作
 
@@ -35,6 +31,16 @@
 - 支持多种修改操作
 
 ![img.png](media/zh/mutation.png)
+
+### 更多
+
+#### 例子1: 自动生成仓库描述并且修改它
+![](media/zh/modify_description.png)
+#### 例子2: 结合文档回复issue
+![](media/zh/comment_issue.png)
+#### 例子3: 查询仓库
+![](media/zh/hot_repo.png)
+
 
 ### 快速入门
 直接在 python 中运行

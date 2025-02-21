@@ -1,4 +1,13 @@
-# 🧰 AI Agent Service Toolkit
+
+# 🧰 Github AI Assistant
+
+<h4 align="center">
+    <p>
+        <b>English</b> |
+        <a href="https://github.com/wanzunz/chat_with_github/blob/main/README_CN.md">中文（简体）</a>
+    <p>
+</h4>
+
 
 An AI assistant that simultaneously supports a range of capabilities within GitHub, such as querying/modifying repositories, organizations, Issues, Pull Requests, and more. Theoretically, it supports most of the capabilities documented in the [GitHub GraphQL API documentation](https://docs.github.com/en/graphql).
 
@@ -10,8 +19,6 @@ This project offers a template for you to easily build and run your own agents u
 
 
 ## Overview
-
-<a href="https://agent-service-toolkit.streamlit.app/"><img src="media/app_screenshot.png" width="600"></a>
 
 ### What Can It Do?
 
