@@ -10,7 +10,7 @@ jobs:
   test:
     # Don't try to run deployment in forks and repo copies
     if: github.repository == 'JoshuaC215/agent-service-toolkit'
-    uses: ./.github/workflows/test.yml
+    uses: ./x_backup.github/workflows/test.yml
 
   build:
     runs-on: ubuntu-latest
